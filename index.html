@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>订单管理系统</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- 头部导航 -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <i class="fas fa-chart-line"></i>
+                <span>订单管理系统</span>
+            </div>
+            <div class="header-actions">
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <div class="user-profile">
+                    <i class="fas fa-user-circle"></i>
+                    <span>管理员</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 侧边栏 -->
+    <aside class="sidebar">
+        <nav class="nav-menu">
+            <ul>
+                <li class="nav-item active" data-tab="orders">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span>订单管理</span>
+                </li>
+                <li class="nav-item" data-tab="users">
+                    <i class="fas fa-users"></i>
+                    <span>人员管理</span>
+                </li>
+                <li class="nav-item" data-tab="products">
+                    <i class="fas fa-box"></i>
+                    <span>产品管理</span>
+                </li>
+                <li class="nav-item" data-tab="dashboard">
+                    <i class="fas fa-chart-bar"></i>
+                    <span>数据概览</span>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+
+    <!-- 主内容区域 -->
+    <main class="main-content">
+        <!-- 订单管理 -->
+        <section class="content-section active" id="orders">
+            <div class="section-header">
+                <h2><i class="fas fa-shopping-cart"></i> 订单管理</h2>
+                <button class="btn btn-primary" id="addOrderBtn">
+                    <i class="fas fa-plus"></i> 新增订单
+                </button>
+            </div>
+            
+            <div class="filters">
+                <div class="filter-group">
+                    <label for="orderStatus">订单状态:</label>
+                    <select id="orderStatus">
+                        <option value="">全部状态</option>
+                        <option value="pending">待处理</option>
+                        <option value="processing">处理中</option>
+                        <option value="completed">已完成</option>
+                        <option value="cancelled">已取消</option>
+                    </select>
+                </div>
+                <div class="filter-group search-group">
+                    <label for="orderSearch">搜索订单:</label>
+                    <div class="search-input-group">
+                        <input type="text" id="orderSearch" placeholder="输入订单号或客户名称">
+                        <button class="search-btn" id="searchOrderBtn">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="data-table-container">
+                <table class="data-table" id="ordersTable">
+                    <thead>
+                        <tr>
+                            <th>订单ID</th>
+                            <th>客户名称</th>
+                            <th>产品名称</th>
+                            <th>数量</th>
+                            <th>总金额</th>
+                            <th>状态</th>
+                            <th>创建时间</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- 数据将通过JavaScript动态填充 -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- 人员管理 -->
+        <section class="content-section" id="users">
+            <div class="section-header">
+                <h2><i class="fas fa-users"></i> 人员管理</h2>
+                <button class="btn btn-primary" id="addUserBtn">
+                    <i class="fas fa-plus"></i> 新增人员
+                </button>
+            </div>
+
+            <div class="filters">
+                <div class="filter-group">
+                    <label for="userRole">角色:</label>
+                    <select id="userRole">
+                        <option value="">全部角色</option>
+                        <option value="admin">管理员</option>
+                        <option value="manager">经理</option>
+                        <option value="employee">员工</option>
+                    </select>
+                </div>
+                <div class="filter-group search-group">
+                    <label for="userSearch">搜索人员:</label>
+                    <div class="search-input-group">
+                        <input type="text" id="userSearch" placeholder="输入姓名或邮箱">
+                        <button class="search-btn" id="searchUserBtn">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="data-table-container">
+                <table class="data-table" id="usersTable">
+                    <thead>
+                        <tr>
+                            <th>用户ID</th>
+                            <th>姓名</th>
+                            <th>邮箱</th>
+                            <th>电话</th>
+                            <th>角色</th>
+                            <th>状态</th>
+                            <th>创建时间</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- 数据将通过JavaScript动态填充 -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- 产品管理 -->
+        <section class="content-section" id="products">
+            <div class="section-header">
+                <h2><i class="fas fa-box"></i> 产品管理</h2>
+                <button class="btn btn-primary" id="addProductBtn">
+                    <i class="fas fa-plus"></i> 新增产品
+                </button>
+            </div>
+
+            <div class="filters">
+                <div class="filter-group">
+                    <label for="productCategory">分类:</label>
+                    <select id="productCategory">
+                        <option value="">全部分类</option>
+                        <option value="electronics">电子产品</option>
+                        <option value="clothing">服装</option>
+                        <option value="books">图书</option>
+                        <option value="home">家居用品</option>
+                    </select>
+                </div>
+                <div class="filter-group search-group">
+                    <label for="productSearch">搜索产品:</label>
+                    <div class="search-input-group">
+                        <input type="text" id="productSearch" placeholder="输入产品名称或编号">
+                        <button class="search-btn" id="searchProductBtn">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="data-table-container">
+                <table class="data-table" id="productsTable">
+                    <thead>
+                        <tr>
+                            <th>产品ID</th>
+                            <th>产品名称</th>
+                            <th>分类</th>
+                            <th>价格</th>
+                            <th>库存</th>
+                            <th>状态</th>
+                            <th>创建时间</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- 数据将通过JavaScript动态填充 -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- 数据概览 -->
+        <section class="content-section" id="dashboard">
+            <div class="section-header">
+                <h2><i class="fas fa-chart-bar"></i> 数据概览</h2>
+            </div>
+
+            <div class="dashboard-stats">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 id="totalOrders">0</h3>
+                        <p>总订单数</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 id="totalUsers">0</h3>
+                        <p>总用户数</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-box"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 id="totalProducts">0</h3>
+                        <p>总产品数</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-dollar-sign"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 id="totalRevenue">¥0</h3>
+                        <p>总收入</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 模态框 -->
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">标题</h3>
+                <button class="modal-close" id="modalClose">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <!-- 模态框内容将通过JavaScript动态填充 -->
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="modalCancel">取消</button>
+                <button class="btn btn-primary" id="modalConfirm">确认</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 加载指示器 -->
+    <div class="loading" id="loading">
+        <div class="loading-spinner"></div>
+        <p>加载中...</p>
+    </div>
+
+    <!-- 通知提示 -->
+    <div class="notification" id="notification">
+        <div class="notification-content">
+            <i class="notification-icon"></i>
+            <span class="notification-message"></span>
+        </div>
+    </div>
+
+    <!-- JavaScript文件 - 按依赖顺序加载 -->
+    <script src="src/services/api.js"></script>
+    <script src="js/utils/uiUtils.js"></script>
+    <script src="js/utils/formGenerator.js"></script>
+    <script src="js/modules/orderManager.js"></script>
+    <script src="js/modules/userManager.js"></script>
+    <script src="js/modules/productManager.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
